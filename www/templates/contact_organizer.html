@@ -1,0 +1,53 @@
+<ion-view view-title="Contact Organizer">
+  <ion-content>
+      
+    <div class="list">
+   
+        <input type="hidden" ng-model="formdata.volunteer_ministry">
+        <input type="hidden" ng-model="formdata.event_id">
+        <input type="hidden" ng-model="formdata.leader_id">
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">First Name <span class="assertive">*</span></span>
+      <input type="text" ng-model="formdata.volunteer_first_name" placeholder="First Name">
+    </label>
+        
+   <label class="item item-input item-stacked-label">
+      <span class="input-label">Last Name <span class="assertive">*</span></span>
+      <input type="text" ng-model="formdata.volunteer_last_name" placeholder="Last Name">
+    </label>
+        
+     <label class="item item-input item-stacked-label">
+      <span class="input-label">Email Address <span class="assertive">*</span></span>
+      <input type="email" ng-model="formdata.volunteer_email" placeholder="Email Address">
+    </label>
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Mobile Phone <span class="assertive">*</span></span>
+      <input type="tel" ng-model="formdata.volunteer_mobile" placeholder="Mobile Phone (all numbers - without spaces, dashes, periods, etc.)">
+    </label>  
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Home Phone</span>
+      <input type="tel" ng-model="formdata.volunteer_phone" placeholder="Home Phone (Optional)">
+    </label>  
+    
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Subject <span class="assertive">*</span></span>
+      <input type="text" ng-model="formdata.volunteer_subject" placeholder="Subject">
+    </label>    
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Message <span class="assertive">*</span></span>
+      <textarea ng-model="formdata.volunteer_message" placeholder="" rows="8">I would like to suggest this ministry in order to: 
+      </textarea>
+    </label>
+        
+       </div>
+      <div class="row">
+        <button class="button button-full button-positive" ng-click="submitForm()">
+          Contact Organizer
+        </button>   
+      </div>
+  </ion-content>
+</ion-view>

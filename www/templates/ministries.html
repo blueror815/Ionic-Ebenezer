@@ -1,0 +1,35 @@
+<ion-view view-title="Ministries">
+    
+    <div class="bar bar-subheader bar-light item-input-inset">
+    <label class="item-input-wrapper ">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" ng-model="q" placeholder="Search for Ministries">
+    </label>
+  </div>
+    
+    
+    
+  <ion-content class="has-subheader">
+    
+      <ion-refresher
+        pulling-text="Pull to refresh Ministries!"
+        refreshing-text="Refreshing Ministries..."
+        spinner = "lines"
+        on-refresh="RefreshMinistries()">
+    </ion-refresher> 
+      
+      <div class="list">
+
+          <a class="item item-text-wrap item-icon-right" ng-click="getMinistryInfo(ministry);" href="#/app/ministries/{{ministry.ministryid}}" ng-repeat="ministry in ministriesData | orderBy: ministryname | filter:q">
+                 <h2  style="font-size: 18px;" class="positive">{{ministry.ministryname}}</h2><span class="assertive"><small ng-bind-html="ministry.categoryname"></small></span>
+                 <p ng-bind-html="ministry.short_description"></p>
+               <i class="icon ion-ios-arrow-right positive"></i>
+             </a>
+         
+
+    </div>
+
+  </ion-content>
+    
+    
+</ion-view>

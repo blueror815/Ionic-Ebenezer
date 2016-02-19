@@ -1,0 +1,30 @@
+<ion-view view-title="Events">
+  <ion-content class="">
+      <div class="list">
+          
+          <div class='list card padding' ng-show="eventsData.length === 0">
+              <center class="positive"><i class="icon ion-calendar stable" style="font-size: 100px;"></i> 
+                  <br><br>
+                  No Events found!</center>
+          </div>
+
+          
+          <div class="" ng-repeat="(key,value) in eventsData">
+            <div class="item item-divider item-positive">
+                     {{key}}
+                 </div>
+
+               <a class="item item-text-wrap" href="#/app/events/{{event.eventid}}" ng-click="getEventInfo(event)" ng-repeat="event in value">
+<!--                   <i class="icon ion-calendar positive"></i> -->
+                   <h2 style="font-size: 18px;">{{event.eventname}}</h2>
+                   <p style="color:#2b4375">{{event.ministry_id.ministryname}}</p>
+                   <p>{{event.event_room1}}</p>
+                   <p>
+            <b>{{event.start | moment: 'dddd, MMMM Do, YYYY'}}</b> at <b>{{event.start | moment: 'h a'}}</b>, {{event.event_location}}</p>
+               </a>
+
+       </div>
+          
+          
+  </ion-content>
+</ion-view>

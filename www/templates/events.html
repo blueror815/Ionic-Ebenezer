@@ -1,0 +1,163 @@
+<ion-view view-title="Events">
+    
+  <div class="bar bar-subheader bar-light item-input-inset" ng-show="today">
+    <label class="item-input-wrapper ">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" ng-model="searchtoday" placeholder="Search Today's Events">
+    </label>
+  </div>
+    
+  <div class="bar bar-subheader bar-light item-input-inset" ng-show="this_week">
+    <label class="item-input-wrapper ">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" ng-model="searchweek" placeholder="Search Events This Week">
+    </label>
+  </div>
+    
+  <div class="bar bar-subheader bar-light item-input-inset" ng-show="this_month">
+    <label class="item-input-wrapper ">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" ng-model="searchmonth" placeholder="Search Events This Month">
+    </label>
+  </div>
+    
+  <div class="bar bar-subheader bar-light item-input-t's binset" ng-show="this_featured">
+    <label class="item-input-wrapper ">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search"  ng-model="searchfeatured" placeholder="Search Featured Events">
+    </label>
+  </div>
+    
+    
+    
+    
+  <ion-content class="has-subheader has-footer">
+      
+      <ion-refresher
+            pulling-text="Pull to refresh Events!"
+            refreshing-text="Refreshing Events..."
+            spinner = "lines"
+            on-refresh="RefreshEvents()">
+        </ion-refresher> 
+      
+      <div class="list">
+
+          
+          <div class="item item-divider item-dark" ng-show="today">
+              Today, {{date | moment: 'MMMM Do, YYYY'}}
+          </div>
+          <div class="item item-divider item-dark" ng-show="this_week">
+              Events This Week
+          </div> 
+          <div class="item item-divider item-dark" ng-show="this_month">
+               Events This Month
+          </div> 
+           <div class="item item-divider item-dark" ng-show="this_featured">
+              Featured Events
+          </div> 
+          
+          
+          <div class='list card padding' ng-show="today &&  eventsData && eventsData.events_today.length === 0">
+              <center class="dark"><i class="icon ion-calendar stable" style="font-size: 100px;"></i> 
+                  <br><br>
+                  No Events for Today!</center>
+          </div>
+          <div class='list card padding' ng-show="this_week &&  eventsData && eventsData.events_this_week.length === 0">
+               <center class="dark"><i class="icon ion-calendar stable" style="font-size: 100px;"></i> 
+                  <br><br>
+              No Events this week!</center>
+          </div>
+          <div class='list card padding' ng-show="this_month &&  eventsData && eventsData.events_this_month.length === 0">
+               <center class="dark"><i class="icon ion-calendar stable" style="font-size: 100px;"></i> 
+                  <br><br>
+              No Events this month!</center>
+          </div>
+          <div class='list card padding' ng-show="this_featured &&  eventsData && eventsData.featured_events.length === 0">
+               <center class="dark"><i class="icon ion-calendar stable" style="font-size: 100px;"></i> 
+                  <br><br>
+              No featured events found!</center>
+          </div>
+          
+          <!--events_today-->
+    <div class="" ng-repeat="(key,value) in eventsData.events_today" ng-show="today">
+        <div class="item item-divider" ng-if="value.length" style="text-align: center;">
+                     {{key}}
+                 </div>
+               <a class="item item-text-wrap" ng-show="today && value.length" href="#/app/events/{{event.eventid}}" ng-click="getEventInfo(event)" ng-repeat="event in value  | orderBy: start_timestamp | filter:searchtoday track by $index">
+                   <h2 class="positive" style="font-size: 18px;">{{event.eventname}}</h2>
+                   <p style="color:#2b4375">{{event.ministry_id.ministryname}}</p>
+                   <p>{{event.event_room1}}<br>
+                       Start Time: <b>{{event.start | moment: 'h:mm a'}}</b></p>
+               </a>
+       </div>
+          
+          
+<!--          events_this_week-->
+    <div class="" ng-repeat="(key,value) in eventsData.events_this_week" ng-show="this_week">
+         <div class="item item-divider" style="text-align: center;">
+                  {{key}}
+              </div>
+
+            <a class="item item-text-wrap" ng-show="this_week" href="#/app/events/{{event.eventid}}" ng-click="getEventInfo(event)" ng-repeat="event in value  | filter:searchweek">
+                <h2 class="positive" style="font-size: 18px;">{{event.eventname}}</h2>
+                <p style="color:#2b4375">{{event.ministry_id.ministryname}}</p>
+                <p>{{event.event_room1}}<br>
+                       Start Time: <b>{{event.start | moment: 'h:mm a'}}</b></p>
+            </a>
+
+    </div>
+          
+<!--          events_this_month-->
+    <div class="" ng-repeat="(key,value) in eventsData.events_this_month" ng-show="this_month">
+     <div class="item item-divider" style="text-align: center;">
+                  {{key}}
+              </div>
+            <a class="item  item-text-wrap" ng-show="this_month" href="#/app/events/{{event.eventid}}" ng-click="getEventInfo(event)" ng-repeat="event in value  | filter:searchmonth">
+                <h2 class="positive" style="font-size: 18px;">{{event.eventname}}</h2>
+                <p style="color:#2b4375">{{event.ministry_id.ministryname}}</p>
+              <p>{{event.event_room1}}<br>
+                       Start Time: <b>{{event.start | moment: 'h:mm a'}}</b></p>
+            </a>
+    </div>
+
+    <div class="list card" style="padding:0px;" ng-show="this_featured" ng-click="getEventInfo(event)" ng-repeat="event in eventsData.featured_events | filter:searchfeatured">
+       
+        <a href="#/app/events/{{event.eventid}}" ng-click="getEventInfo(event)">
+            
+    <img style="width: 100%;" ng-if="event.publish_web_banner" ng-src="http://mpc.historicebenezer.org/{{event.publish_web_banner}}" /> 
+    <img style="width: 100%;" ng-if="!event.publish_web_banner && event.ministryphoto" ng-src="http://mpc.historicebenezer.org/{{event.ministryphoto}}" /> </a>
+
+
+        <div class="item item-body item-icon-right" style="margin: 0px; padding-top: 0px; border: 0px;">
+        <i class="icon ion-share positive" ng-click="doShare(event.eventname, event.eventname, 'http://www.historicebenezer.org',event.publish_web_banner);"></i>
+
+         <a ng-click="getEventInfo(event)" href="#/app/events/{{event.eventid}}" style="text-decoration:none"> <h2 class="positive" style="font-size: 18px; ">{{event.eventname}}</h2> </a>
+
+         <p>
+            <b>{{event.start | moment: 'dddd, MMMM Do, YYYY'}}</b> at <b>{{event.start | moment: 'h a'}}</b>, {{event.event_location}}</p>
+        </div>
+
+      </div>
+
+<!--        featured_events-->
+<!--        <a ng-class="{'item-thumbnail-left' : event.publish_web_banner}" class="item item-text-wrap" ng-show="this_featured" href="#/app/events/{{event.eventid}}" ng-click="getEventInfo(event)" ng-repeat="event in eventsData.featured_events | filter:searchfeatured">
+            <img ng-if="event.publish_web_banner" ng-src="http://mpc.historicebenezer.org/{{event.publish_web_banner}}" />
+            <h2 class="positive" style="font-size: 18px;">{{event.eventname}}</h2>
+            <p style="color:#2b4375">{{event.ministry_id.ministryname}}</p>
+             <p>{{event.event_room1}}<br>
+            Start Time: <b>{{event.start | moment: 'hh:mm a'}}</b></p>
+        </a>-->
+        
+      </div> 
+      
+  </ion-content>
+    
+    <div class="bar bar-footer bar-light">
+        <div class="button-bar">
+            <a class="button button-light" ng-click="showToday()" ng-class="{'active button-dark light': today}"  style="max-width: 70px;padding: 3px 12px;">Today</a>
+            <a class="button button-light" ng-click="showWeek()" ng-class="{'active button-dark light': this_week}" style="max-width: 100px;padding: 3px 12px;">This Week</a>
+            <a class="button button-light" ng-click="showMonth()" ng-class="{'active button-dark light': this_month}"  style="max-width: 100px;padding: 3px 12px;">This Month</a>
+            <a class="button button-light" ng-click="showFeatured()" ng-class="{'active button-dark light': this_featured}" style="max-width: 100px;padding: 3px 12px;">Featured</a>
+          </div>
+    </div>
+</ion-view>

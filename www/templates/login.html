@@ -1,0 +1,120 @@
+<ion-modal-view>
+    <div class="bar bar-header bar-stable">
+        <h1 class="title" title-align="left" ng-if="loginmodal">Login</h1>
+        <h1 class="title" title-align="left" ng-if="!loginmodal">Register</h1>
+        <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeLogin()" ng-if="!hideCloseButton"></button>
+    </div>   
+
+
+    <ion-content class='padding has-header light-bg' >
+<!--        <center><img src='img/ebenzer-logo.jpg' width='50%' style='margin-top: 10%;' /></center>-->
+        
+        <div class="row col" id="ForgotPasswordSection" ng-if="forgotpassmodal">
+            
+            <div class="list list-inset" style="width:90%;margin:40px auto 20px;">
+              <label class="item item-divider">
+                  Enter Email Address
+              </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-person-outline placeholder-icon"></i>
+                <input type="text" placeholder="Email Address" ng-model="forgotPasswordData.user_email">
+              </label>
+              
+          </div>
+        
+        <button class="button button-block button-positive" style="width:90%; margin:0px auto" ng-click="doForgotPassword();">Send</button>
+
+        
+        <br>
+        <div class="row">
+            <p style="margin-left: 15px; "><a class="dark" ng-click="showLogin()">Back to Login Page</a></p>
+        </div>
+              
+              
+        </div>
+        
+        <div class="row col" id="LoginSection" ng-if="loginmodal">
+            
+            <div class="list list-inset" style="width:90%;margin:40px auto 20px;">
+            <label class="item item-input">
+                <i class="icon ion-ios-person-outline placeholder-icon"></i>
+                <input type="text" placeholder="Email Address" ng-model="loginData.user_email">
+              </label>
+              <label class="item item-input">
+                  <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+                <input type="password" placeholder="Password" ng-model="loginData.password">
+              </label>
+            
+          </div>
+        
+              <button class="button button-block button-balanced  icon-left ion-log-in" style="width:90%; margin:0px auto" ng-click="doLogin();">Log in</button>
+              
+              
+              
+              <div style="border-top:1px solid #ccc;position: relative; width:90%; text-align: center; margin: 25px auto; margin-bottom: 20px;">
+                  <div style="position:absolute; left: 0; right:0; margin:0 auto; padding:10px; top: -20px; width: 100px;background: #fff;">OR</div>
+              </div>
+              
+              
+              <button class="button button-block button-positive  icon-left ion-log-in" style="width:90%; margin:0px auto; background: #3b5998; border-color: #3b5998" ng-click="doFacebookLogin();">Sign in with Facebook</button>
+              <br />
+              <button class="button button-block button-balanced  icon-left ion-log-in" style="width:90%; margin:0px auto; background: #00aced; border-color: #00aced" ng-click="doTwitterLogin();">Sign in using Twitter</button>
+              <br />
+              <button class="button button-block button-balanced  icon-left ion-log-in" style="width:90%; margin:0px auto; background: #d34836; border-color: #d34836" ng-click="doGoogleLogin();">Sign in using Google</button>
+              
+              <div style="border-top:1px solid #ccc;position: relative; width:90%; text-align: center; margin: 25px auto; margin-bottom: 20px; ">
+                  <div style="position:absolute; left: 0; right:0; margin:0 auto; padding:10px; top: -20px; width: 100px;background: #fff;">OR</div>
+              </div>
+              
+              <div class="row">
+                    <div class="col">
+                        <a class="button button-block button-light" ng-click="showRegister()"  style="width:95%; margin:0px auto; border: 1px solid #ccc">
+                            Register
+                        </a>
+
+                    </div>
+                </div>
+            
+        </div>
+
+
+        <div class="row col"  id="RegisterSection" ng-if="registermodal">
+
+ <div class="list list-inset" style="width:90%;margin:40px auto 20px;">
+              <label class="item item-input">
+                  <i class="icon ion-ios-person-outline placeholder-icon"></i>
+                <input type="text" placeholder="Full Name" ng-model="registerData.fullname">
+              </label>
+            
+            <label class="item item-input">
+                <i class="icon ion-ios-at-outline placeholder-icon"></i>
+                <input type="email" placeholder="Email Address" ng-model="registerData.user_email">
+              </label>
+              <label class="item item-input">
+                  <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+                <input type="password" placeholder="Password" ng-model="registerData.password">
+              </label>
+            
+          </div>
+        
+        <button class="button button-block button-balanced icon-left ion-ios-unlocked-outline" style="width:90%; margin:0px auto" ng-click="doRegister();">Register</button>
+              
+
+
+           <div style="border-top:1px solid #ccc;position: relative; width:90%; text-align: center; margin: 25px auto">
+                  <div style="position:absolute; left: 0; right:0; margin:0 auto; padding:10px; top: -20px; width: 100px;background: #fff;">OR</div>
+              </div>
+              
+                <div class="row">
+                    <div class="col">
+                        <a class="button button-block button-light" style="width:95%; margin:12px auto; border: 1px solid #ccc" ng-click="showLogin()">
+                            Login
+                        </a>
+
+                    </div>
+                </div>
+        
+        </div>
+
+    </ion-content>
+</ion-modal-view>

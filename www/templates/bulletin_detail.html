@@ -1,0 +1,58 @@
+<ion-view view-title="Bulletins">
+
+    <ion-content>
+<!--        <div class="list card" style="margin:-5px;">
+            <div class="item item-image" style="max-height:280px;">
+                <div class="item services-item2">
+                    <h2 style="font-size: 18px;white-space: normal;color: #fff; font-weight: bolder">{{bulletin.programtitle}}<br><small>{{bulletin.eventstart| moment: 'MMMM Do, YYYY  hh:mm a'}}</small></h2>
+                </div>
+                <img style='width:100%' ng-if="bulletin.coverphoto" ng-src="http://mpc.historicebenezer.org/{{bulletin.coverphoto}}">
+                <img style='width:100%' ng-if="!bulletin.coverphoto" ng-src="img/No_image.png">
+            </div>
+        </div>-->
+
+        <div class="list card" style="margin: 0px; border-radius: 0px;">
+
+            <div class="item item-text-wrap item-light item-icon-right">
+                <h2 class="dark" ng-if="bulletin.programtitle">{{bulletin.eventtitle}}</h2>
+                <i ng-if="bulletin.programtitle" class="icon ion-share dark" ng-click="doShare(bulletin.eventtitle, '', 'http://www.historicebenezer.org',bulletin.coverphoto);"></i>
+
+                <i  style="margin-right: 40px;" ng-if="bulletin.eventid" class="icon ion-ios-chatbubble dark" ng-click="startChat('event', bulletin.eventid);"></i>
+                
+                 <i  style="margin-right: 80px;" ng-if="bulletin.eventid" class="icon ion-ios-calendar-outline dark" ng-click="gotoEventPage(bulletin.eventid);"></i>
+
+            </div>
+            <div class="item item-body">
+                <p ng-bind-html="bulletin.coverhtml"></p>
+            </div>
+            <div class="item item-body">
+                <p ng-bind-html="bulletin.programhtml"></p>
+            </div>
+
+            <a href="{{bulletin.bibleapplink}}" target="_blank" style="margin: 10px;" class="button button-positive button-block">Scripture : {{bulletin.scripturehtml}}</a>
+
+            <a href="#/app/giving" style="margin: 10px;" class="button button-positive button-block">Giving</a>
+            <a href="#/app/announcements" style="margin: 10px;" class="button button-positive button-block">Announcements</a>
+            <a href="#/app/ministries/{{bulletin.ministry_id}}" style="margin: 10px;" class="button button-positive button-block">Sponsor: {{bulletin.ministryname}}</a>
+            
+             <a ng-if="bulletin.pdfdownload" href="http://mpc.historicebenezer.org/{{bulletin.pdfdownload}}" target="_blank" style="margin: 10px;" class="button button-positive button-block">Download PDF</a>
+
+            <div class="row socialbuttons">
+                <div class="col">
+                    <button ng-click="shareonFacebook('',bulletin.eventtitle,'http://www.historicebenezer.org/',bulletin.coverphoto);" class="button button-positive button-block light icon-left ion-social-facebook">Facebook</button>
+                </div>
+                <div class="col">
+                    <button ng-click="shareonTwitter(bulletin.eventtitle);" class="button button-royal button-block light icon-left ion-social-twitter">Twitter</button>
+                </div>
+            </div>
+
+            <div class="item item-body">
+                <p ng-bind-html="bulletin.bottomhtml"></p>
+            </div>
+
+
+
+        </div>
+
+    </ion-content>
+</ion-view>

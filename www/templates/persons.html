@@ -1,0 +1,49 @@
+<ion-view view-title="Bulletins">
+    
+  <div class="bar bar-subheader bar-light item-input-inset">
+    <label class="item-input-wrapper ">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" ng-model="q" placeholder="Search a Person">
+    </label>
+  </div>
+    
+  <ion-content class="has-subheader">
+<!--      <ion-refresher
+        pulling-text="Pull to refresh Bulletins!"
+        refreshing-text="Refreshing Bulletins..."
+        spinner = "lines"
+        on-refresh="RefreshBulletins()">
+      </ion-refresher> -->
+      
+      
+      <div data-ng-repeat="(letter, authors) in sorted_users" class="alpha_list">
+        <ion-item class="item item-divider" id="index_{{letter}}">
+          {{letter}}
+        </ion-item>
+        <ion-item ng-repeat="author in authors | filter:q">
+            
+          {{author.firstname}} {{author.lastname}}
+          
+        </ion-item>
+      </div>
+
+
+
+
+<!--        <a ng-class="{'item-thumbnail-left' : bulletin.coverphoto}" class="item  item-text-wrap" href="#/app/bulletins/{{bulletin.id}}" ng-click="getBulletinInfo(bulletin)" ng-repeat="bulletin in bulletinsData | filter:q | orderBy: bulletin.eventstart:false">
+          <img ng-if="bulletin.coverphoto" ng-src="http://mpc.historicebenezer.org/{{bulletin.coverphoto}}" style="min-height: 110px" />
+            <h2 style="font-size: 18px;">{{bulletin.programtitle}}</h2>
+            <p style="color:#2b4375">{{bulletin.eventtitle}}</p>
+            <p>{{bulletin.eventstart | moment: 'MMMM Do, YYYY hh:mm a'}}</p>
+        </a>-->
+
+  </ion-content>
+    
+    
+     <ul class="alpha_sidebar">
+      <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet"> 
+          {{letter}}
+      </li>
+    </ul>
+    
+</ion-view>

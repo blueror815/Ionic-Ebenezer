@@ -1,0 +1,19 @@
+<ion-view title="{{post.title}}">
+    <ion-content class="has-header">
+                
+        <div class="list card" ng-if="post.thumbnail" style="margin:-5px;">
+            <div class="item item-image" style="max-height:210px; min-height: 210px">
+                 <div class="item services-item">
+                     <h2 style="font-size: 18px;white-space: normal;color: #fff; font-weight: bolder">{{post.title}}<br><small>{{post.date | moment: 'MMMM Do, YYYY'}}</small></h2>
+            </div>
+              <img style='width:100%'  ng-src="{{post.thumbnail_images.full.url}}">
+            </div>
+       </div> 
+        
+        <div class="list card padding" style="margin: 0px; border-radius: 0px;">
+            <p ng-bind-html="post.content"></p>
+        </div>
+        
+        
+    </ion-content>
+</ion-view>

@@ -1,0 +1,76 @@
+<ion-view view-title="Contact Ministry">
+  <ion-content>
+      
+    <div class="list">
+   
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Ministry Name <span class="assertive">*</span></span>
+      <input type="text" style='color: #3b5998' readonly placeholder="Minstry Name" ng-model="ministry.ministryname">
+    </label>
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">First Name <span class="assertive">*</span></span>
+      <input type="text" placeholder="First Name" ng-model="formdata.volunteer_first_name">
+    </label>
+        
+   <label class="item item-input item-stacked-label">
+      <span class="input-label">Last Name <span class="assertive">*</span></span>
+      <input type="text" placeholder="Last Name" ng-model="formdata.volunteer_last_name">
+    </label>
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Your Email Address <span class="assertive">*</span></span>
+      <input type="email" placeholder="Email Address" ng-model="formdata.volunteer_email">
+    </label>
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Mobile Phone <span class="assertive">*</span></span>
+      <input type="tel" placeholder="Mobile Phone (all numbers - without spaces, dashes, periods, etc.)" ng-model="formdata.volunteer_mobile">
+    </label>  
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Home Phone</span>
+      <input type="tel" ng-model="formdata.volunteer_phone" placeholder="Home Phone (Optional)">
+    </label>  
+        
+  
+     <ul class="list">
+
+    <li class="item item-toggle">
+                Are you a member?
+                <label class="toggle toggle-balanced">
+                    <input type="checkbox" ng-model="formdata.volunteer_member_check">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+             </li>
+             
+             <li class="item item-toggle">
+               Confirm via email/text? 
+                <label class="toggle toggle-balanced">
+                    <input type="checkbox" ng-model="formdata.volunteer_notify_check">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+             </li>
+  </ul>   
+
+    
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Message <span class="assertive">*</span></span>
+      <textarea ng-model="formdata.volunteer_message" placeholder="" rows="8">Please contact me regarding this ministry:  Ebenezer Member & Guest Services
+</textarea>
+    </label>
+        
+        
+       </div>
+
+      <div class="row">
+        <button class="button button-full button-positive" ng-click="submitForm()">
+          Contact Us Today!
+        </button>   
+      </div>
+  </ion-content>
+</ion-view>

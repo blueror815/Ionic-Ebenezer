@@ -1,0 +1,75 @@
+<ion-view view-title="Event Detail">
+
+    <ion-content>
+
+        <div class="list card" style="margin:-5px;">
+            <div class="item item-image" style="min-height: 200px;max-height:280px;">
+                <div class="item services-item2">
+                    <h2 style="font-size: 18px;white-space: normal;color: #fff; font-weight: bolder">{{event.eventname}}<br>
+                        <small style="font-size:16px">
+                            {{event.start | moment: 'dddd, MMMM Do, YYYY h:mm a'}} - {{event.end| moment: 'h:mm a'}}
+                        </small>
+                    </h2>
+                </div>
+                <img style='width:100%' ng-if="event.publish_web_banner" ng-src="http://mpc.historicebenezer.org/{{event.publish_web_banner}}">
+                <img style='width:100%' ng-if="!event.publish_web_banner && event.ministry_id.ministryphoto" ng-src="http://mpc.historicebenezer.org/{{event.ministry_id.ministryphoto}}">
+                <img style='width:100%' ng-if="!event.publish_web_banner && !event.ministry_id.ministryphoto" ng-src="img/No_image.png">
+            </div>
+        </div>
+
+        <div class="list card" style="margin: 0px;">
+
+            <div class="item item-text-wrap item-stable item-icon-right ">
+                <h2><a href="#/app/ministries/{{event.ministry_id.ministryid}}" class="positive" style="text-decoration: none" ng-bind-html="event.ministry_id.ministryname"></a></h2>
+
+                <i class="icon ion-share dark" ng-click="doShare(event.eventname, event.eventname, 'http://www.historicebenezer.org',event.publish_web_banner);"></i>
+                
+                <i  style="margin-right: 40px;" ng-if="(event.church_featured_event === '1' || event.ministry_featured_event === '1') && event.ministry_id.ministryid" class="icon ion-ios-chatbubble dark" ng-click="startChat('event', event.eventid);"></i>
+                
+                <i  class="icon ion-ios-calendar-outline dark" style="margin-right: 80px; font-size: 24px"  ng-click="AddtoCalender();"></i>
+                <i class="icon ion-ios-email dark" ng-if="event.event_pccontact !== '0'" ng-click="gotoContactOrganizer(event.event_pccontact, event.eventid, event.ministry_id.ministryid, event.eventname);" style="margin-right: 120px;"  ng-click="AddtoCalender();"></i>
+            </div>
+
+<!--            ng-style="{margin-right: answers[question.id] == '2' ? '' : '80px',  }"-->
+            
+            <div class="item item-body">
+                <p>
+                    <b ng-if="event.event_room1">Room: </b> <span class="positive">{{event.event_room1}}</span><br>
+                    <b ng-if="event.event_location">Location: </b> <span class="positive">{{event.event_location}}</span><br>
+                    <b ng-if="event.event_type">Event Type: </b> <span class="positive">{{event.event_type}}</span><br>
+
+                    
+                  <hr ng-if="event.announcement.company_publicity_text">
+                  <b ng-if="event.announcement.company_publicity_title && event.announcement.company_publicity_text">{{event.announcement.company_publicity_title}}</b><br>   
+                  
+                <hr ng-if="event.announcement.company_publicity_text">
+                <i ng-if="event.announcement.company_publicity_text" style='font-size: 18px;float:left; margin-right: 20px; margin-bottom:20px;' class="icon  ion-speakerphone dark"></i>
+                <p ng-if="event.announcement.company_publicity_text" ng-bind-html="event.announcement.company_publicity_text"></p>
+
+                <hr ng-if="event.announcement.company_publicity_text">
+
+                <div ng-bind-html="event.publish_decription"></div>
+
+                <a ng-if="event.publish_action_label && event.publish_action_link" href="{{event.publish_action_link}}" target="_blank" style="margin: 10px;" class="button button-positive button-block">{{event.publish_action_label}}</a>
+
+                
+                
+                <a ng-if="event.publish_information_doc" href="http://mpc.historicebenezer.org/{{event.publish_information_doc}}" target="_blank" style="margin: 10px;" class="button button-positive button-block">{{event.publicity_doc_title}}</a>
+                
+                <br><br>
+                <iframe ng-if="event.event_location" width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{googlemap}}"></iframe>
+
+            </div>
+        </div>
+        
+        <div class="row socialbuttons">
+                <div class="col">
+                    <button ng-click="shareonFacebook('',event.eventname,'http://www.historicebenezer.org/',event.publish_web_banner);" class="button button-positive button-block light icon-left ion-social-facebook">Facebook</button>
+                </div>
+                <div class="col">
+                    <button ng-click="shareonTwitter(event.eventname);" class="button button-royal button-block light icon-left ion-social-twitter">Twitter</button>
+                </div>
+            </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,48 @@
+<ion-view view-title="Live & OD">
+    
+    <div class="bar bar-subheader bar-light item-input-inset">
+    <label class="item-input-wrapper ">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search">
+    </label>
+  </div>
+    
+  <ion-content class="has-subheader">
+    
+       <ion-refresher
+        pulling-text="Pull to refresh Videos!"
+        refreshing-text="Refreshing Videos..."
+        spinner = "lines"
+        on-refresh="RefreshLiveODs()">
+    </ion-refresher> 
+      
+      <div class="card" style="margin: 0px;">
+        <div class="item item-divider item-stable">
+          Current Video
+        </div>
+        <div class="item item-text-wrap" style="padding:0px;">
+          <iframe width="100%" height="240px" ng-src="{{video_url}}"></iframe>
+        </div>
+      </div>
+      
+      
+      <div class="list card" style="margin: 0px;">
+        <a class="item item-divider">
+          Previous Videos
+        </a>
+          
+          <a href="#/app/live_detail" ng-repeat="video in liveOdsData.previous_videos" class="item item-text-wrap item-thumbnail-left item-icon-right" ng-click="getliveInfo(video);">
+             
+              <img style="border-radius: 50%" ng-if="video.photo" ng-src="http://mpc.historicebenezer.org/{{video.photo}}">
+              <img style="border-radius: 50%" ng-if="!video.photo" ng-src="img/user-default.jpg">
+             
+              <span class="positive">{{video.firstname}} {{video.lastname}}</span>
+              <p><span class="assertive">{{video.stream_date | moment: 'dddd, MMMM Do, YYYY'}}</span><br>{{video.sermontitle}}</p>
+             <i class="icon ion-ios-arrow-right"></i> 
+          </a>
+        
+      </div>
+
+
+  </ion-content>
+</ion-view>

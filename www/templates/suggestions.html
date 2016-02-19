@@ -1,0 +1,92 @@
+<ion-view view-title="Ministry Suggestion">
+  <ion-content>
+      
+    <div class="list">
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Suggested Ministry Name <span class="assertive">*</span></span>
+      <input type="text" ng-model="formdata.volunteer_represent" placeholder="Suggested Minstry Name">
+    </label>
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">First Name <span class="assertive">*</span></span>
+      <input type="text" ng-model="formdata.volunteer_first_name" placeholder="First Name">
+    </label>
+        
+   <label class="item item-input item-stacked-label">
+      <span class="input-label">Last Name <span class="assertive">*</span></span>
+      <input type="text" ng-model="formdata.volunteer_last_name" placeholder="Last Name">
+    </label>
+        
+     <label class="item item-input item-stacked-label">
+      <span class="input-label">Email Address <span class="assertive">*</span></span>
+      <input type="email" ng-model="formdata.volunteer_email" placeholder="Email Address">
+    </label>
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Mobile Phone <span class="assertive">*</span></span>
+      <input type="tel" ng-model="formdata.volunteer_mobile" placeholder="Mobile Phone (all numbers - without spaces, dashes, periods, etc.)">
+    </label>  
+        
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Home Phone</span>
+      <input type="tel" ng-model="formdata.volunteer_phone" placeholder="Home Phone (Optional)">
+    </label>  
+        
+  
+        
+     <ul class="list">
+
+        <li class="item item-toggle">
+                Are you a member?
+                <label class="toggle toggle-balanced">
+                    <input type="checkbox" ng-model="formdata.volunteer_member_check">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+             </li>
+             
+             <li class="item item-toggle">
+               Confirm via email/text? 
+                <label class="toggle toggle-balanced">
+                    <input type="checkbox" ng-model="formdata.volunteer_notify_check">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+             </li>
+         
+<!--    <li class="item item-checkbox">
+       <label class="checkbox">
+         <input type="checkbox" ng-model="formdata.volunteer_member">
+       </label>
+       Are you a member? <span class="assertive">*</span>
+    </li>
+
+   <li class="item item-checkbox">
+       <label class="checkbox">
+         <input type="checkbox" ng-model="formdata.volunteer_notify">
+       </label>
+       Confirm via email/text? <span class="assertive">*</span>
+    </li>-->
+  </ul>   
+
+    
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Message <span class="assertive">*</span></span>
+      <textarea ng-model="formdata.volunteer_message" placeholder="john@suhr.com" rows="8">I would like to suggest this ministry in order to: 
+
+      
+      </textarea>
+    </label>
+        
+        
+       </div>
+
+      <div class="row">
+        <button class="button button-full button-positive" ng-click="submitForm()">
+          Suggest a Ministry
+        </button>   
+      </div>
+  </ion-content>
+</ion-view>

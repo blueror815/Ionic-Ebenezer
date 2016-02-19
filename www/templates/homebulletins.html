@@ -1,0 +1,45 @@
+<ion-view view-title="Bulletins">
+    
+     <div class="bar bar-subheader bar-light item-input-inset">
+    <label class="item-input-wrapper ">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" ng-model="q" placeholder="Search">
+    </label>
+  </div>
+    
+  <ion-content class="has-subheader padding">
+      
+      <ion-refresher
+        pulling-text="Pull to refresh Bulletins!"
+        refreshing-text="Refreshing Bulletins..."
+        spinner = "lines"
+        on-refresh="RefreshBulletins()">
+      </ion-refresher> 
+      
+      
+      <div class="list card" ng-repeat="bulletin in bulletinsData | filter:q">
+       
+        <a href="#/app/bulletins/{{bulletin.id}}" ng-click="getBulletinInfo(bulletin)">
+            <img style="width: 100%;" ng-if="bulletin.coverphoto" ng-src="http://mpc.historicebenezer.org/{{bulletin.coverphoto}}" /> 
+        </a>
+        <div class="item item-body" style="margin: 0px; padding-top: 0px; border: 0px;">
+<!--        <i class="icon ion-share positive" ng-click="doShare(event.eventname, event.start);"></i>-->
+
+         <a  href="#/app/bulletins/{{bulletin.id}}" ng-click="getBulletinInfo(bulletin)" style="text-decoration:none"> <h2 class="positive" style="font-size: 18px; ">{{bulletin.programtitle}}</h2> </a>
+         <p style="color:#2b4375">{{bulletin.eventtitle}}</p>
+         <p>
+            <b>{{bulletin.eventstart | moment: 'MMMM Do, YYYY hh:mm a'}}</b></p>
+        </div>
+
+      </div>
+      
+      
+<!--        <a ng-class="{'item-thumbnail-left' : bulletin.coverphoto}" class="item  item-text-wrap" href="#/app/bulletins/{{bulletin.id}}" ng-click="getBulletinInfo(bulletin)" ng-repeat="bulletin in bulletinsData | filter:q">
+          <img ng-if="bulletin.coverphoto" ng-src="http://mpc.historicebenezer.org/{{bulletin.coverphoto}}" />
+            <h2 style="font-size: 18px;">{{bulletin.programtitle}}</h2>
+            <p style="color:#2b4375">{{bulletin.eventtitle}}</p>
+            <p>{{bulletin.eventstart | moment: 'MMMM Do, YYYY'}}</p>
+        </a>-->
+
+  </ion-content>
+</ion-view>

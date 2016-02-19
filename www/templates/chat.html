@@ -1,0 +1,82 @@
+<ion-view id="userMessagesView" cache-view="false" view-title="Chat">
+    
+        <div class="loader-center" ng-if="!doneLoading">
+            <div class="loader">
+              <i class="icon ion-loading-c"></i>
+            </div>
+        </div>
+    
+<ion-content has-bouncing="true" class="has-header has-footer light-bg" 
+              delegate-handle="userMessageScroll">
+            
+              <div ng-repeat="message in messages" class="message-wrapper"
+                         on-hold="onMessageHold($event, $index, message)">
+                  
+                  
+                  <img class="profile-pic left" ng-if="message.user_id !== null && !message.user_details.is_leader && message.user_details.profile_photo" ng-src="http://mpc.historicebenezer.org/{{message.user_details.profile_photo}}" onerror="onProfilePicError(this)" />
+                  
+                  <img class="profile-pic left" ng-if="message.user_id !== null && !message.user_details.is_leader && !message.user_details.profile_photo" ng-src="img/user-default.jpg" onerror="onProfilePicError(this)" />
+                  
+                    
+                   <div class="chat-bubble left" ng-if="message.user_id !== null && !message.user_details.is_leader">
+                        <div class="message" ng-bind-html="message.message | nl2br" autolinker>
+                        </div>
+
+                        <div class="message-detail">
+                            <span class="bold">{{message.user_details.display_name}}</span>,
+                            <span am-time-ago="message.created"></span>,
+                        </div>
+
+                    </div>
+                  
+                  
+                  <img class="profile-pic right" ng-if="message.user_id !== null && message.user_details.is_leader && message.user_details.profile_photo" ng-src="http://mpc.historicebenezer.org/{{message.user_details.profile_photo}}" onerror="onProfilePicError(this)" />
+                  
+                   <img class="profile-pic right" ng-if="message.user_id !== null && !message.user_details.is_leader && !message.user_details.profile_photo" ng-src="img/user-default.jpg" onerror="onProfilePicError(this)" />
+                  
+                   <div class="chat-bubble right" ng-if="message.user_id !== null && message.user_details.is_leader">
+                        <div class="message" ng-bind-html="message.message | nl2br" autolinker>
+                        </div>
+
+                        <div class="message-detail">
+                            <span class="bold">{{message.user_details.display_name}}</span>,
+                            <span am-time-ago="message.created"></span><br>
+                            <span class="bold">{{message.user_details.leader_role}}</span>
+                            
+                        </div>
+
+                    </div>
+                  
+                  
+                  <img class="profile-pic left" ng-if="message.user_id === null" ng-src="img/user-default.jpg" />
+                  
+                  <div class="chat-bubble left" ng-if="message.user_id === null">
+                        <div class="message" ng-bind-html="message.message | nl2br" autolinker>
+                        </div>
+
+                        <div class="message-detail">
+                            <span class="bold">Anonymous</span>,
+                            <span am-time-ago="message.created"></span>
+                        </div>
+
+                    </div>
+                  
+                  <div class="cf"></div>
+      
+              </div>
+          </ion-content>
+    
+    
+     <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate>
+              <ion-footer-bar class="bar-light item-input-inset message-footer" keyboard-attach>
+                  <label class="item-input-wrapper">
+                      <textarea ng-model="input.message" value="" placeholder="Send a message..." required minlength="1" maxlength="1500" msd-elastic></textarea>
+                  </label>
+                  <div class="footer-btn-wrap">
+                    <button class="button button-icon icon ion-android-send footer-btn" type="submit"
+                        ng-disabled="!input.message || input.message === ''">
+                    </button>
+                  </div>
+              </ion-footer-bar>
+          </form>
+</ion-view>

@@ -1,0 +1,106 @@
+<ion-view view-title="Ministry Detail">
+  <ion-content>
+      <div class="list card" style="margin: 0px;">
+          
+                <div class="item item-image" ng-if='ministry.ministryphoto' style="min-height: 180px; max-height: 180px; background: url('img/Loading_image.png') no-repeat top center; background-size: cover;">
+                  <img src="http://mpc.historicebenezer.org/{{ministry.ministryphoto}}">
+                </div>
+                <div class="item item-image" ng-if='!ministry.ministryphoto' style="min-height: 180px; max-height: 180px; background: url('img/No_image.png') no-repeat top center; background-size: cover">
+                </div>
+
+                <div class="item item-icon-right">
+                  <h2  style="font-size: 18px;">{{ministry.ministryname}}</h2>
+                  <p><span class="positive" ng-bind-html="ministry.categoryname"></span></p>
+                  <i class="icon ion-ios-chatbubble positive" ng-click="startChat('ministry',ministry.ministryid);"></i>
+                  <i class="icon ion-email positive" ng-click="gotoContactMinistry();" style="margin-right: 40px;"></i>
+                  <i class="icon ion-share positive" ng-click="doShare(ministry.ministryname, ministry.ministryname+' \n'+ministry.short_description, 'http://www.historicebenezer.org',ministry.ministryphoto);" style="margin-right: 80px;"></i>
+                </div>
+          
+                 <div class="item item-text-wrap" ng-bind-html="ministry.short_description | to_trusted"></div>
+                 <div class="item item-text-wrap">Usually Meets On <b>{{ministry.dayofweek}}</b> (<b>{{ministry.timeofday}}</b>) in the <b>{{ministry.areaoftown}}</b> area </div>
+                 
+                 <a class="item item-icon-right" ng-click="gotoMinistryAbout(ministry.ministryid);"  style="font-size: 18px;"> 
+                  More  About Us..
+                  <i class="icon ion-ios-arrow-right positive"></i>
+                </a>
+                 
+                 <a ng-if="ministry.category_id == '1000018'" class="item item-icon-right" ng-click="gotoGroupMinistriess();"  style="font-size: 18px;">
+                  Ministries in this Group
+                  <i class="icon ion-ios-arrow-right positive"></i>
+                </a>
+
+                 <a class="item item-icon-right" ng-click="gotoMinistryAnnoucements();"  style="font-size: 18px;">
+                  Announcements
+                  <i class="icon ion-ios-arrow-right positive"></i>
+                </a>
+                 
+                 
+                 <a class="item item-icon-right" ng-click="gotoMinistryEvents();"  style="font-size: 18px;">
+                  Events
+                  <i class="icon ion-ios-arrow-right positive"></i>
+                </a>
+               
+                <div class="item item-divider  item-positive">
+                  Social Networks
+                </div>
+
+                <a ng-if="ministry.ministryfacebook" href="{{ministry.ministryfacebook}}" class="item item-icon-left">
+                  <i class="icon ion-social-facebook positive"></i>
+                  Facebook
+                </a>
+
+                <a ng-if="ministry.ministrytwitter" href="{{ministry.ministrytwitter}}" class="item item-icon-left">
+                  <i class="icon ion-social-twitter positive"></i>
+                  Twitter
+                </a>
+
+                <a ng-if="ministry.ministrygoogleplus" href="{{ministry.ministrygoogleplus}}" class="item item-icon-left">
+                  <i class="icon ion-social-googleplus positive"></i>
+                  Google+
+                </a>
+
+                <a ng-if="ministry.ministryyoutube" href="{{ministry.ministryyoutube}}" class="item item-icon-left">
+                  <i class="icon ion-social-youtube positive"></i>
+                 Youtube
+                </a>
+                 
+                  <a ng-if="ministry.ministryvimeo" href="{{ministry.ministryvimeo}}" class="item item-icon-left">
+                  <i class="icon ion-social-vimep positive"></i>
+                 Vimeo
+                </a>
+                 
+                 
+                 <a ng-if="ministry.ministrylinkedin" href="{{ministry.ministrylinkedin}}" class="item item-icon-left">
+                  <i class="icon ion-social-linkedin positive"></i>
+                 Linkedin
+                </a> 
+          
+                <a ng-if="ministry.ministrywebsite" href="{{ministry.ministrywebsite}}" class="item item-icon-left">
+                  <i class="icon ion-link positive"></i>
+                 Website
+                </a>
+          
+                <a ng-if="ministry.ministryemail" href="mailto:{{ministry.ministryemail}}" class="item item-icon-left">
+                  <i class="icon ion-ios-email positive"></i>
+                 {{ministry.ministryemail}}
+                </a>
+                
+      </div>
+        
+      
+        <div class="item item-divider item-dark">
+          Ministry Leaders
+        </div>
+
+        <div class="list">
+          <a class="item item-avatar-left" href="javascript:void(0);" ng-repeat="leader in ministry.ministry_leader_roles">
+              <img ng-if="leader.profile_photo" ng-src="http://mpc.historicebenezer.org/{{leader.profile_photo}}">
+              <img ng-if="!leader.profile_photo" src="img/user-default.jpg">
+              <h2 class="">{{leader.display_name}}</h2>
+              <p><span class="assertive">{{leader.role}}</span></p>
+          </a>
+      </div>
+      
+      
+  </ion-content>
+</ion-view>

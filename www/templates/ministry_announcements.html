@@ -1,0 +1,27 @@
+<ion-view view-title="Announcements">
+    
+  <ion-content>
+      
+      <div class='list card padding' ng-show="announcementsData.length === 0">
+            <center class="positive"><i class="icon ion-calendar stable" style="font-size: 100px;"></i> 
+            <br><br>
+            No Annoucements found!</center>
+      </div>
+      
+      
+      <div class="list" ng-repeat="announcement in announcementsData" >
+            <div class="item item-text-wrap  item-icon-right">
+                <h2 style="font-size:20px;" class="positive"><b ng-bind-html="announcement.company_publicity_title"></b></h2>
+                <p>{{announcement.ministryname}}</p>
+<!--                <i class="icon ion-share positive" ng-click="doShare(announcement.company_publicity_title, announcement.company_publicity_text);"></i>-->
+            </div>
+            <div class="item item-body">
+                <p style='margin-top: 0px; font-size: 14px;' ng-bind-html="announcement.company_publicity_text"></p>
+                <a class="positive" style="text-decoration: none" target="_blank" href="{{announcement.company_publicity_action_link}}">{{announcement.company_publicity_action_label}}</a>
+                
+                <p ng-if="announcement.eventid !== '0'">More on this event: <a class="positive" style="text-decoration: none" href="#/app/events/{{announcement.eventid}}">{{announcement.event_name}}</a></p>
+                <p>Last Updated: {{announcement.company_publicity_last_update| moment:'dddd, MMMM Do YYYY, h:mm a'}}</p>
+            </div>  
+        </div>
+  </ion-content>
+</ion-view>

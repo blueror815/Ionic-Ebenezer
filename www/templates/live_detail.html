@@ -1,0 +1,38 @@
+<ion-view view-title="{{live.firstname}} {{live.lastname}}">
+  
+  <ion-content>
+      <div class="card" style="margin: 0px;">
+          
+          
+        <div class="item item-text-wrap" style="padding:0px;">
+          <iframe width="100%" height="240px" ng-src="{{video_url}}"></iframe>
+        </div>
+          <div class="item item-text-wrap item-thumbnail-left item-icon-right" style="margin-top: -10px;">
+              <img style="border-radius: 50%"  ng-if="live.photo" ng-src="http://mpc.historicebenezer.org/{{live.photo}}">
+              <img style="border-radius: 50%"  ng-if="!live.photo" ng-src="img/user-default.jpg">
+              
+              <span class="positive">{{live.sermontitle}}</span><br>
+            <span class="assertive">{{live.firstname}} {{live.lastname}}</span>
+            <p>{{live.stream_date | moment: 'dddd, MMMM Do, YYYY'}} <br>{{live.scripture}}</p>
+        </div>
+      </div>
+      
+      
+      <div class="list card" style="margin: 0px;">
+        <a class="item item-divider item-stable">
+          Upcoming Program Dates
+        </a>
+          
+          <a ng-repeat="program in live.next_programs" class="item item-text-wrap item-icon-right" href="#/app/events/{{program.eventid}}">
+              <span class="positive">{{program.eventtitle}}</span>
+              <p><span class="assertive">{{program.startdate | moment: 'dddd, MMMM Do, YYYY'}}</span></p>
+             <i class="icon ion-ios-arrow-right"></i> 
+          </a>
+        
+          
+          
+      </div>
+
+
+  </ion-content>
+</ion-view>

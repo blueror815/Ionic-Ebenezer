@@ -1,0 +1,35 @@
+<ion-view view-title="Core Groups">
+  <ion-content>
+    <div class="list">
+         <ion-refresher
+            pulling-text="Pull to refresh Core Groups!"
+            refreshing-text="Refreshing  Core Groups..."
+            spinner = "lines"
+            on-refresh="RefreshCoreGroups()">
+        </ion-refresher> 
+        
+        
+        
+        <div class="list card" style="padding:0px;" ng-repeat="ministry in coreGroupsData">
+       
+        <a href="#/app/ministries/{{ministry.ministryid}}"  ng-click="getMinistryInfo(ministry);">
+            <img style="width: 100%;" ng-if="ministry.ministryphoto" ng-src="http://mpc.historicebenezer.org/{{ministry.ministryphoto}}" /> </a>
+        <div class="item item-body item-icon-right" style="margin: 0px; padding-top: 0px; border: 0px;">
+
+         <a href="#/app/ministries/{{ministry.ministryid}}"  ng-click="getMinistryInfo(ministry);" style="text-decoration:none"> 
+             <h2 class="positive" style="font-size: 18px; ">{{ministry.ministryname}}</h2> 
+             <i class="icon ion-ios-arrow-right positive"></i>
+         </a>
+        </div>
+
+      </div>
+        
+        
+<!--        <a class="item item-text-wrap item-icon-right" href="#/app/ministries/{{ministry.ministryid}}" ng-click="getMinistryInfo(ministry);"  ng-repeat="ministry in coreGroupsData">
+             <h2 class="positive">{{ministry.ministryname}}</h2><span class="assertive"><small>{{ministry.categoryname}}</small></span>
+           <i class="icon ion-ios-arrow-right positive"></i>
+         </a>-->
+
+    </div>
+  </ion-content>
+</ion-view>

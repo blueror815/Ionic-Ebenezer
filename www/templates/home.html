@@ -1,0 +1,96 @@
+<ion-view view-title="EBCMobileToday">
+    <ion-content>
+
+        <ion-refresher
+            pulling-text="Pull to refresh Data!"
+            refreshing-text="Refresh Homepage..."
+            spinner = "lines"
+            on-refresh="RefreshHomePage()">
+        </ion-refresher> 
+
+        <div class="list list-inset card" style="margin:-5px;">
+            <div class="item item-image" style="max-height:290px;">
+                 <div class="item services-item">
+            
+                     <h2 style="font-size: 18px;white-space: normal;color: #fff; font-weight: bolder">Ebenezer Baptist Church, Atlanta GA<br><small>{{date | moment: 'MMMM Do, YYYY'}}</small></h2>
+            </div>
+              <img style='width:100%' ng-src="http://mpc.historicebenezer.org/{{landingData.main_cover_photo}}">
+            </div>
+       </div>
+
+       <div class="list list-inset">
+            <div class="item item-divider item-dark">About Us</div>
+            <div class="item item-text-wrap">
+                <p ng-bind-html="landingData.short_description"></p>
+                <br>
+                <a href="#/app/ministry_about/{{landingData.ministryid}}" class="button button-positive button-block">More About Us...</a>
+            </div>
+        </div>     
+        
+        <div class="list list-inset">
+            <a class="item item-icon-right" href='#/app/events' style="font-size: 17px;">
+              Events
+              <i class="icon ion-ios-arrow-right positive"></i>
+            </a>
+            <a class="item item-icon-right" href='#/app/homebulletins' style="font-size: 17px;">
+              Bulletins
+              <i class="icon ion-ios-arrow-right positive"></i>
+            </a>
+        </div>
+        
+        
+
+        <div class="list list-inset">
+            <div class="item item-divider item-dark">Worship Service Times</div>
+            <div class="item">
+                <b class="positive">Sundays:</b><br>
+                8 am & 11 am Worship Services<br>
+                10:30 am Church School<br>
+                11 am Children & Youth Services<br><br>
+                <b class="positive">Wednesdays:</b><br>
+                7 pm Worship on Wednesdays (WOW)
+
+            </div>
+        </div>
+
+
+
+        <div class="list list-inset" style="margin-bottom:0px;">
+            <div class="item item-divider item-dark">Contact Us</div>
+
+            <a href="#/app/map" class="item item-text-wrap item-icon-left ">
+<i class="icon ion-map positive"></i>               
+101 Jackson Street, Atlanta GA 30312
+                
+            </a>
+
+            <a href="http://historicebenezer.org" class="item item-icon-left">
+                <i class="icon ion-link positive"></i>
+                www.historicebenezer.org
+            </a>
+
+            <a href="mailto:info@ebenezerchurch.us" ng-click="composeEmail();" class="item item-icon-left">
+                <i class="icon ion-ios-email positive"></i>
+                info@ebenezerchurch.us
+            </a>
+
+            <a href="tel:+1 4046887300" class="item item-icon-left">
+                <i class="icon ion-ios-telephone positive"></i>
+                Call: +1 404 688 7300
+            </a>
+            
+            
+        </div>
+        
+        <div class="row socialbuttons">
+            <div class="col">
+                <button ng-click="shareonFacebook('','Get connected with the Ebenezer Mobile App.  Download in Apple and Google stores.','http://www.historicebenezer.org/',landingData.main_cover_photo);" class="button button-positive button-block light icon-left ion-social-facebook">Facebook</button>
+            </div>
+            <div class="col">
+                <button ng-click="shareonTwitter('Get connected with the Ebenezer Mobile App.  Download in Apple and Google stores.')" class="button button-royal button-block light icon-left ion-social-twitter">Twitter</button>
+            </div>
+        </div>
+        
+        
+    </ion-content>
+</ion-view>

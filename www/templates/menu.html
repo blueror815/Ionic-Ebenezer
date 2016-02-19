@@ -1,0 +1,106 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable" align-title="left">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-ios-locked-outline" ng-if="!Loggedin"  ng-click="login()"></button>
+        <button class="button button-icon button-clear ion-log-in" ng-click="doLogout();" ng-if="Loggedin"></button>
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+      </ion-nav-buttons>
+        
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="right" class="stable-bg">
+      <ion-header-bar class="bar-dark" align-title="left">
+      <h1 class="title">Mobile Services</h1>
+    </ion-header-bar>
+      
+    <ion-content>
+      <ion-list>
+          
+        <div class="item item-avatar item-text-wrap  light-bg" ng-if="Loggedin"  style="border:none; padding-top:10px; padding-bottom: 10px;">
+            <img ng-if='userInfo.profile_photo' style="margin-top:-5px;max-width: 60px; border: 1px solid #ddd; padding: 2px;max-height: 60px;" ng-click="gotoEditProfile();" ng-src="http://mpc.historicebenezer.org/{{userInfo.profile_photo}}">
+            
+            <img ng-if='!userInfo.profile_photo' style="margin-top:-5px;max-width: 60px; border: 1px solid #ddd; padding: 2px;max-height: 60px;" ng-click="gotoEditProfile();" ng-src="img/user-default.jpg">
+            
+
+            <h2 class='dark' style='font-weight: bold; margin-left: 10px;'>{{userInfo.display_name}}</h2>
+            <p style='margin-left: 10px;' ng-if="userInfo.location">{{userInfo.location}}<p>
+                     </div>  
+          
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/home">
+         <i style='font-size: 18px;' class="icon ion-ios-home dark"></i> Home
+        </ion-item>
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/giving">
+         <i  style='font-size: 18px;' class="icon ion-ios-undo dark"></i> Giving
+        </ion-item>
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/liveandod">
+         <i style='font-size: 18px;' class="icon ion-ios-videocam dark"></i> Live & OD 
+        </ion-item>
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/news_categories">
+         <i style='font-size: 18px;' class="icon ion-earth dark"></i> News
+        </ion-item>  
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/bulletins">
+         <i style='font-size: 18px;' class="icon ion-radio-waves dark"></i> Bulletins
+        </ion-item>  
+       
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/announcements">
+         <i style='font-size: 18px;' class="icon  ion-speakerphone dark"></i> Announcements
+        </ion-item>
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/events">
+         <i style='font-size: 18px;' class="icon ion-calendar dark"></i> Events
+        </ion-item>
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/core_groups">
+         <i style='font-size: 18px;' class="icon ion-person-stalker dark"></i> Core Groups
+        </ion-item>
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/ministries">
+         <i style='font-size: 18px;' class="icon ion-ios-box dark"></i> Ministries
+        </ion-item>
+          
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/persons">
+         <i style='font-size: 18px;' class="icon ion-ios-people dark"></i> Person Directory
+        </ion-item>
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/facebook">
+         <i style='font-size: 18px;' class="icon  ion-social-facebook dark"></i> Facebook
+        </ion-item>
+
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/suggestions">
+         <i style='font-size: 18px;' class="icon ion-ios-lightbulb dark"></i> Suggestions
+        </ion-item>
+          
+        <ion-item class="item-stable item-icon-left" menu-close href="#/app/need_prayer">
+         <i style='font-size: 18px;' class="icon ion-help dark"></i> Need Prayer?
+        </ion-item>  
+          
+        <ion-item class="item-text-wrap item-stable item-icon-left" menu-close href="#/app/need_help_find">
+         <i style='font-size: 18px;' class="icon ion-help dark"></i> Need Help Finding a Ministry?
+        </ion-item>   
+          
+        <ion-item class="item-text-wrap item-stable item-icon-left" menu-close href="#/app/become_member">
+         <i style='font-size: 18px;' class="icon ion-person-add dark"></i> Interested in Becoming a Member?
+        </ion-item> 
+
+       <ion-item class="item-text-wrap item-stable item-icon-left" menu-close ng-click="doLogout();">
+         <i style='font-size: 18px;' class="icon ion-log-in dark"></i>Logout
+        </ion-item> 
+
+
+       
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
